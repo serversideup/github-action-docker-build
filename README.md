@@ -2,7 +2,6 @@
 		<img src="https://raw.githubusercontent.com/serversideup/github-action-docker-build/main/.github/readme-header.png" width="1280" alt="Header Image">
 </p>
 <p align="center">
-	<a href="https://actions-badge.atrox.dev/serversideup/github-action-docker-build/goto?ref=main"><img alt="Build Status" src="https://img.shields.io/github/workflow/status/serversideup/github-action-docker-build/Docker%20Publish%20(Production%20Images)"></a>
 	<a href="https://github.com/serversideup/github-action-docker-build/blob/main/LICENSE" target="_blank"><img src="https://badgen.net/github/license/serversideup/github-action-docker-build" alt="License"></a>
 	<a href="https://github.com/sponsors/serversideup"><img src="https://badgen.net/badge/icon/Support%20Us?label=GitHub%20Sponsors&color=orange" alt="Support us"></a>
   <br />
