@@ -32,7 +32,7 @@ This is a GitHub Action intended to simplify the process for building automated 
 
 ### Features:
 - ✅ Stupid simple to use
-- 🚀 Customize your docker image names/tags by easily passing the action what you want it to be
+- 🚀 Customize your docker image names/tags by easily passing what you want it to be
 - 🤓 Multi-arch support
 - 🔀 Context aware (great if you have a Docker file in a different part of your repo)
 
