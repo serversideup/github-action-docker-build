@@ -40,7 +40,7 @@ This is a GitHub Action intended to simplify the process for building automated 
 # Usage
 Here is an example workflow:
 
-```yaml
+```yml
 name: Docker Publish (Production Images)
 on:
   push:
@@ -60,7 +60,7 @@ jobs:
         with:
           tags: serversideup/financial-freedom:latest
           platforms: "linux/amd64,linux/arm/v7,linux/arm64/v8"
-		  context: "./docker/"
+          context: "./docker/"
 ```
 ### Configuration options
 **🔀 Variable Name**|**📚 Description**|**👉 Default**
