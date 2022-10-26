@@ -5,7 +5,7 @@ inputs:
     description: 'Enter the tag you would like to name your image with. (example: myorg/myapp:production)'
     required: true
   context:
-    description: 'Path to the source Dockerfile'
+    description: 'The relative path to the Dockerfile.'
     default: '.'
     required: false
   platforms:
