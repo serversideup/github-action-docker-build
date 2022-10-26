@@ -4,6 +4,16 @@ inputs:
   tags:
     description: 'Enter the tag you would like to name your image with. (example: myorg/myapp:production)'
     required: true
+  registry-username:
+    description: 'Enter the username to authenticate with your registry.'
+    required: true
+  registry-token:
+    description: 'Enter the token or password to authenticate with your registry. (an access token is highly recommended)'
+    required: true
+  registry:
+    description: 'Choose which container image repository to upload to.'
+    default: '' # Defaults to Docker Hub
+    required: false
   context:
     description: 'The relative path to the Dockerfile.'
     default: '.'
@@ -15,6 +25,13 @@ inputs:
 runs:
   using: 'composite'
   steps:
+      - name: Login to Container Image Registry
+        uses: docker/login-action@v2
+        with:
+          username: ${{ inputs.registry-username }}
+          password: ${{ inputs.registry-password }}
+          registry: ${{ inputs.registry }}
+
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v6

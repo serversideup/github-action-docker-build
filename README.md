@@ -48,25 +48,26 @@ jobs:
   docker-publish:
     runs-on: ubuntu-22.04
     steps:
-      - name: Login to DockerHub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-
       - name: docker-build-action
-        uses: serversideup/github-action-docker-build@v1.0.0
+        uses: serversideup/github-action-docker-build@v1
         with:
           tags: serversideup/financial-freedom:latest
+          registry-username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          registry-token: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
           platforms: "linux/amd64,linux/arm/v7,linux/arm64/v8"
-          context: "./docker/"
 ```
 ### Configuration options
-**🔀 Variable Name**|**📚 Description**|**👉 Default**
-:-----:|:-----:|:-----:
-tags|Enter the tag you would like to name your image with. (example: `myorg/myapp:production`)|(🚨 Required to be set)
-context|The relative path to the Dockerfile.|`.`
-platforms|Comma separated list of <a href="https://github.com/docker-library/official-images#architectures-other-than-amd64">platforms</a>.|`linux/amd64`
+**🔀 Input Name**|**📚 Description**|**🛑 Required**|**👉 Default**
+:-----:|:-----:|:-----:|:-----:
+tags|Enter the tag you would like to name your image with. (example: `myorg/myapp:production`)|⚠️ Yes| 
+registry-username|Enter the username to authenticate with your registry.|⚠️ Yes| 
+registry-token|Enter the token or password to authenticate with your registry. (an access token is highly recommended)|⚠️ Yes| 
+registry|Choose which container image repository to upload to. <a href="https://github.com/docker/login-action#usage">See all options.</a>| |Docker Hub
+context|The relative path to the Dockerfile.| |`.`
+platforms|Comma separated list of <a href="https://github.com/docker-library/official-images#architectures-other-than-amd64">platforms</a>.| |`linux/amd64`
+
+### Important security notice
+Always use encrypted secrets when passing sensitive information. [Learn more here →](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
 
 ### Security Disclosures
 If you find a security vulnerability, please let us know as soon as possible.
