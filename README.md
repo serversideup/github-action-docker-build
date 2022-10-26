@@ -64,7 +64,7 @@ jobs:
 ### Configuration options
 **🔀 Variable Name**|**📚 Description**|**👉 Default**
 :-----:|:-----:|:-----:
-tags|Enter the tag you would like to name your image with. (example: `myorg/myapp:production`)|**🚨 Required to be set**
+tags|Enter the tag you would like to name your image with. (example: `myorg/myapp:production`)|(🚨 Required to be set)
 context|The relative path to the Dockerfile.|`.`
 platforms|Comma separated list of <a href="https://github.com/docker-library/official-images#architectures-other-than-amd64">platforms</a>.|`linux/amd64`
 
