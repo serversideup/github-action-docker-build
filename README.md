@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: docker-build-action
-        uses: serversideup/github-action-docker-build@v1
+        uses: serversideup/github-action-docker-build@v3
         with:
           tags: serversideup/financial-freedom:latest
           registry-username: ${{ secrets.DOCKER_HUB_USERNAME }}
@@ -66,6 +66,7 @@ registry|Choose which container image repository to upload to. <a href="https://
 context|The relative path to the Dockerfile.| |`.`
 dockerfile|Filename of the Dockerfile within the context that you set.| |`{context}/Dockerfile`
 platforms|Comma separated list of <a href="https://github.com/docker-library/official-images#architectures-other-than-amd64">platforms</a>.| |`linux/amd64`
+target|The target build stage to build.| |`''`
 
 ### Important security notice
 Always use encrypted secrets when passing sensitive information. [Learn more here →](https://docs.github.com/en/actions/security-guides/encrypted-secrets)

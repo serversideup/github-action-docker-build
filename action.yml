@@ -22,6 +22,10 @@ inputs:
     description: 'Filename of the Dockerfile within the context that you set.'
     default: '{context}/Dockerfile'
     required: false
+  target:
+    description: 'Set the target build stage to build.'
+    default: ''
+    required: false
   platforms:
     description: 'Comma separated list of platforms.'
     default: 'linux/amd64'
@@ -60,6 +64,7 @@ runs:
           pull: true
           push: true
           tags: ${{ inputs.tags }}
+          target: ${{ inputs.target }}
 branding:
   icon: 'server'
   color: 'blue'
