@@ -64,6 +64,7 @@ registry-username|Enter the username to authenticate with your registry.|⚠️ 
 registry-token|Enter the token or password to authenticate with your registry. (an access token is highly recommended)|⚠️ Yes| 
 registry|Choose which container image repository to upload to. <a href="https://github.com/docker/login-action#usage">See all options.</a>| |Docker Hub
 context|The relative path to the Dockerfile.| |`.`
+dockerfile|Filename of the Dockerfile within the context that you set.| |`{context}/Dockerfile`
 platforms|Comma separated list of <a href="https://github.com/docker-library/official-images#architectures-other-than-amd64">platforms</a>.| |`linux/amd64`
 
 ### Important security notice
