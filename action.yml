@@ -16,7 +16,7 @@ inputs:
     required: false
   context:
     description: 'The relative path to the Dockerfile.'
-    default: '.'
+    default: '{context}/Dockerfile'
     required: false
   dockerfile:
     description: 'Filename of the Dockerfile within the context that you set.'
