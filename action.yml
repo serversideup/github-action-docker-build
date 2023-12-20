@@ -6,13 +6,15 @@ inputs:
     required: true
   registry-username:
     description: 'Enter the username to authenticate with your registry.'
+    default: "${{ github.actor }}"
     required: true
   registry-token:
     description: 'Enter the token or password to authenticate with your registry. (an access token is highly recommended)'
+    default: "${{ secrets.GITHUB_TOKEN }}"
     required: true
   registry:
-    description: 'Choose which container image repository to upload to.'
-    default: '' # Defaults to Docker Hub
+    description: 'Comma-separated list of container registries to authenticate with (e.g., "docker.io,ghcr.io").'
+    default: 'docker.io' # Default to Docker Hub if not specified
     required: false
   context:
     description: 'The relative path to the Dockerfile.'
@@ -34,12 +36,21 @@ runs:
   using: 'composite'
   steps:
 
-      - name: Login to Container Image Registry
+      - name: Login to Docker Hub
+        if: contains(inputs.registry, 'docker.io')
         uses: docker/login-action@v3
         with:
           username: ${{ inputs.registry-username }}
           password: ${{ inputs.registry-token }}
-          registry: ${{ inputs.registry }}
+          registry: docker.io
+
+      - name: Login to GitHub Container Registry
+        if: contains(inputs.registry, 'ghcr.io')
+        uses: docker/login-action@v3
+        with:
+          username: ${{ inputs.registry-username }}
+          password: ${{ inputs.registry-token }}
+          registry: ghcr.io
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
