@@ -20,7 +20,7 @@ inputs:
     required: false
   dockerfile:
     description: 'Filename of the Dockerfile within the context that you set.'
-    default: '{context}/Dockerfile'
+    default: './Dockerfile'
     required: false
   target:
     description: 'Set the target build stage to build.'
