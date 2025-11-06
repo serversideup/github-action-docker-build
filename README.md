@@ -31,11 +31,11 @@ All of our software is free an open to the world. None of this can be brought to
 This is a GitHub Action intended to simplify the process for building automated Docker images with GitHub Actions.
 
 ### Features:
-- ✅ Stupid simple to use
-- 🚀 Customize your docker image names/tags by easily passing what you want it to be
-- 🤓 Multi-arch support
-- 🔀 Context aware (great if you have a Docker file in a different part of your repo)
-- 📦 **Multi-registry support** - Push to up to 3 registries simultaneously (Docker Hub, GitHub Container Registry, and private registries)
+- ✅ **Stupid simple to use** - just pass in the tags, registry, and credentials and you're good to go
+- 🚀 **Customize your docker image names/tags** - easily pass in what you want it to be
+- 🤓 **Multi-arch support** - build for multiple architectures
+- 📦 **Multi-registry support** - build and push to up to 3 registries simultaneously (Docker Hub, GitHub Container Registry, and private registries)
+- 🔀 **Context aware** - great if you have a Dockerfile in a different part of your repo
 
 # Usage
 
