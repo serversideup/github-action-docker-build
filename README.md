@@ -46,10 +46,10 @@ on:
 
 jobs:
   docker-publish:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: docker-build-action
-        uses: serversideup/github-action-docker-build@v3
+        uses: serversideup/github-action-docker-build@v6
         with:
           tags: serversideup/financial-freedom:latest
           registry-username: ${{ secrets.DOCKER_HUB_USERNAME }}
