@@ -11,9 +11,25 @@ inputs:
     description: 'Enter the token or password to authenticate with your registry. (an access token is highly recommended)'
     default: ''
   registry:
-    description: 'Comma-separated list of container registries to authenticate with (e.g., "docker.io,ghcr.io").'
+    description: 'Registry to authenticate with (e.g., "docker.io" or "ghcr.io").'
     default: 'docker.io' # Default to Docker Hub if not specified
     required: false
+  registry-username-2:
+    description: 'Enter the username to authenticate with your registry.'
+    default: ''
+  registry-token-2:
+    description: 'Enter the token or password to authenticate with your registry. (an access token is highly recommended)'
+    default: ''
+  registry-2:
+    description: 'Registry to authenticate with (e.g., "docker.io" or "ghcr.io").'
+  registry-username-3:
+    description: 'Enter the username to authenticate with your registry.'
+    default: ''
+  registry-token-3:
+    description: 'Enter the token or password to authenticate with your registry. (an access token is highly recommended)'
+    default: ''
+  registry-3:
+    description: 'Registry to authenticate with (e.g., "docker.io" or "ghcr.io").'
   context:
     description: 'The relative path to the Dockerfile.'
     default: '.'
@@ -40,6 +56,22 @@ runs:
           username: ${{ inputs.registry-username }}
           password: ${{ inputs.registry-token }}
           registry: ${{ inputs.registry }}
+
+      - name: Login to Container Registry ({{ inputs.registry-2 }})
+        if: inputs.registry-2-username != ''
+        uses: docker/login-action@v3
+        with:
+          username: ${{ inputs.registry-username-2 }}
+          password: ${{ inputs.registry-token-2 }}
+          registry: ${{ inputs.registry-2 }}
+
+      - name: Login to Container Registry ({{ inputs.registry-3 }})
+        if: inputs.registry-3-username != ''
+        uses: docker/login-action@v3
+        with:
+          username: ${{ inputs.registry-username-3 }}
+          password: ${{ inputs.registry-token-3 }}
+          registry: ${{ inputs.registry-3 }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
