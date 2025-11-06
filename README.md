@@ -120,10 +120,10 @@ target|The target build stage to build.| |
 #### If you have more than one registry
 **🔀 Input Name**|**📚 Description**|**🛑 Required**|**👉 Default**
 :-----:|:-----:|:-----:|:-----:
-registry-2|Choose which container image repository to upload to. <a href="https://github.com/docker/login-action#usage">See all options.</a>| |`ghcr.io`
+registry-2|Choose which container image repository to upload to. <a href="https://github.com/docker/login-action#usage">See all options.</a>| |
 registry-username-2|Enter the username to authenticate with your second registry.|⚠️ Yes (if you use the 2nd registry)| 
 registry-token-2|Enter the token or password to authenticate with your second registry. (an access token is highly recommended)|⚠️ Yes (if you use the 2nd registry)|  
-registry-3|Choose which container image repository to upload to. <a href="https://github.com/docker/login-action#usage">See all options.</a>| |`registry.example.com`
+registry-3|Choose which container image repository to upload to. <a href="https://github.com/docker/login-action#usage">See all options.</a>| |
 registry-username-3|Enter the username to authenticate with your third registry.|⚠️ Yes (if you use the 3rd registry)| 
 registry-token-3|Enter the token or password to authenticate with your third registry. (an access token is highly recommended)|⚠️ Yes (if you use the 3rd registry)|  
 
