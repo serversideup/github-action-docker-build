@@ -94,12 +94,12 @@ jobs:
           # Registry 2: GitHub Container Registry
           registry-2: "ghcr.io"
           registry-username-2: ${{ github.actor }}
-          registry-token-2: ${{ secrets.GITHUB_TOKEN }}
+          registry-password-2: ${{ secrets.GITHUB_TOKEN }}
           
           # Registry 3: Custom Private Registry
           registry-3: "registry.example.com"
           registry-username-3: ${{ secrets.CUSTOM_REGISTRY_USER }}
-          registry-token-3: ${{ secrets.CUSTOM_REGISTRY_TOKEN }}
+          registry-password-3: ${{ secrets.CUSTOM_REGISTRY_TOKEN }}
           
           platforms: "linux/amd64,linux/arm64"
 ```
@@ -111,7 +111,8 @@ jobs:
 tags|Enter the tag(s) you would like to name your image with. (example: `myorg/myapp:production`) Use multi-line format for multiple tags.|⚠️ Yes| 
 registry|Choose which container image repository to upload to. <a href="https://github.com/docker/login-action#usage">See all options.</a>| |`docker.io`
 registry-username|Enter the username to authenticate with your first registry.|⚠️ Yes| 
-registry-token|Enter the token or password to authenticate with your first registry. (an access token is highly recommended)|⚠️ Yes|  
+registry-token (deprecated)| Use `registry-password` instead||
+registry-password|Enter the password or token to authenticate with your registry. (an access token is highly recommended)|⚠️ Yes|  
 context|The relative path to the Dockerfile.| |`.`
 dockerfile|Filename of the Dockerfile within the context that you set.| |`./Dockerfile`
 platforms|Comma separated list of <a href="https://github.com/docker-library/official-images#architectures-other-than-amd64">platforms</a>.| |`linux/amd64`
@@ -122,10 +123,10 @@ target|The target build stage to build.| |
 :-----:|:-----:|:-----:|:-----:
 registry-2|Choose which container image repository to upload to. <a href="https://github.com/docker/login-action#usage">See all options.</a>| |
 registry-username-2|Enter the username to authenticate with your second registry.|⚠️ Yes (if you use the 2nd registry)| 
-registry-token-2|Enter the token or password to authenticate with your second registry. (an access token is highly recommended)|⚠️ Yes (if you use the 2nd registry)|  
+registry-password-2|Enter the token or password to authenticate with your second registry. (an access token is highly recommended)|⚠️ Yes (if you use the 2nd registry)|  
 registry-3|Choose which container image repository to upload to. <a href="https://github.com/docker/login-action#usage">See all options.</a>| |
 registry-username-3|Enter the username to authenticate with your third registry.|⚠️ Yes (if you use the 3rd registry)| 
-registry-token-3|Enter the token or password to authenticate with your third registry. (an access token is highly recommended)|⚠️ Yes (if you use the 3rd registry)|  
+registry-password-3|Enter the token or password to authenticate with your third registry. (an access token is highly recommended)|⚠️ Yes (if you use the 3rd registry)|  
 
 > [!NOTE]  
 > At least one registry's credentials must be provided (either registry 1, 2, or 3).

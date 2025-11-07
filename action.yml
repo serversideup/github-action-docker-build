@@ -7,8 +7,11 @@ inputs:
   registry-username:
     description: 'Enter the username to authenticate with your registry.'
     default: ''
+  registry-password:
+    description: 'Enter the password or token to authenticate with your registry. (an access token is highly recommended)'
+    default: ''
   registry-token:
-    description: 'Enter the token or password to authenticate with your registry. (an access token is highly recommended)'
+    description: '[DEPRECATED - Use registry-password instead] Enter the token or password to authenticate with your registry. (an access token is highly recommended)'
     default: ''
   registry:
     description: 'Registry to authenticate with (e.g., "docker.io" or "ghcr.io").'
@@ -17,7 +20,7 @@ inputs:
   registry-username-2:
     description: 'Enter the username to authenticate with your registry.'
     default: ''
-  registry-token-2:
+  registry-password-2:
     description: 'Enter the token or password to authenticate with your registry. (an access token is highly recommended)'
     default: ''
   registry-2:
@@ -25,7 +28,7 @@ inputs:
   registry-username-3:
     description: 'Enter the username to authenticate with your registry.'
     default: ''
-  registry-token-3:
+  registry-password-3:
     description: 'Enter the token or password to authenticate with your registry. (an access token is highly recommended)'
     default: ''
   registry-3:
@@ -54,23 +57,23 @@ runs:
         uses: docker/login-action@v3
         with:
           username: ${{ inputs.registry-username }}
-          password: ${{ inputs.registry-token }}
+          password: ${{ inputs.registry-password || inputs.registry-token }}
           registry: ${{ inputs.registry }}
 
-      - name: Login to Container Registry ({{ inputs.registry-2 }})
+      - name: "Login to Container Registry #2 ({{ inputs.registry-2 }})"
         if: inputs.registry-2-username != ''
         uses: docker/login-action@v3
         with:
           username: ${{ inputs.registry-username-2 }}
-          password: ${{ inputs.registry-token-2 }}
+          password: ${{ inputs.registry-password-2 }}
           registry: ${{ inputs.registry-2 }}
 
-      - name: Login to Container Registry ({{ inputs.registry-3 }})
+      - name: "Login to Container Registry #3 ({{ inputs.registry-3 }})"
         if: inputs.registry-3-username != ''
         uses: docker/login-action@v3
         with:
           username: ${{ inputs.registry-username-3 }}
-          password: ${{ inputs.registry-token-3 }}
+          password: ${{ inputs.registry-password-3 }}
           registry: ${{ inputs.registry-3 }}
 
       - name: Set up QEMU
