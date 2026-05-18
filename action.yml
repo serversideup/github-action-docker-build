@@ -54,7 +54,7 @@ runs:
   steps:
 
       - name: Login to Container Registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           username: ${{ inputs.registry-username }}
           password: ${{ inputs.registry-password || inputs.registry-token }}
@@ -62,7 +62,7 @@ runs:
 
       - name: "Login to Container Registry #2"
         if: inputs.registry-2-username != ''
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           username: ${{ inputs.registry-2-username }}
           password: ${{ inputs.registry-2-password }}
@@ -70,20 +70,20 @@ runs:
 
       - name: "Login to Container Registry #3"
         if: inputs.registry-3-username != ''
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           username: ${{ inputs.registry-3-username }}
           password: ${{ inputs.registry-3-password }}
           registry: ${{ inputs.registry-3 }}
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Build and push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7
         with:
           context: ${{ inputs.context }}
           platforms: ${{ inputs.platforms }}
