@@ -120,6 +120,8 @@ context|The build context directory (the directory containing your Dockerfile an
 dockerfile|Filename of the Dockerfile within the context that you set.| |`./Dockerfile`
 platforms|Comma separated list of <a href="https://github.com/docker-library/official-images#architectures-other-than-amd64">platforms</a>.| |`linux/amd64`
 target|The target build stage to build.| |
+cache-from|List of external <a href="https://docs.docker.com/build/cache/backends/">cache sources</a> for the build (e.g., `type=gha`). Passed directly to `docker/build-push-action`.| |
+cache-to|List of <a href="https://docs.docker.com/build/cache/backends/">cache export destinations</a> for the build (e.g., `type=gha,mode=max`). Passed directly to `docker/build-push-action`.| |
 
 #### If you have more than one registry
 **🔀 Input Name**|**📚 Description**|**🛑 Required**|**👉 Default**

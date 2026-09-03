@@ -49,6 +49,14 @@ inputs:
     description: 'Comma separated list of platforms.'
     default: 'linux/amd64'
     required: false
+  cache-from:
+    description: 'List of external cache sources for the build (e.g., "type=gha"). Passed directly to docker/build-push-action.'
+    default: ''
+    required: false
+  cache-to:
+    description: 'List of cache export destinations for the build (e.g., "type=gha,mode=max"). Passed directly to docker/build-push-action.'
+    default: ''
+    required: false
 runs:
   using: 'composite'
   steps:
@@ -92,6 +100,8 @@ runs:
           push: true
           tags: ${{ inputs.tags }}
           target: ${{ inputs.target }}
+          cache-from: ${{ inputs.cache-from }}
+          cache-to: ${{ inputs.cache-to }}
 branding:
   icon: 'server'
   color: 'blue'
