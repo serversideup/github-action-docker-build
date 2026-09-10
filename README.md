@@ -36,6 +36,7 @@ This is a GitHub Action intended to simplify the process for building automated 
 - 🤓 **Multi-arch support** - build for multiple architectures
 - 📦 **Multi-registry support** - build and push to up to 3 registries simultaneously (Docker Hub, GitHub Container Registry, and private registries)
 - 🔀 **Context aware** - great if you have a Dockerfile in a different part of your repo
+- ⚡ **Build cache support** - pass `cache-from`/`cache-to` straight through to reuse layers between runs
 
 # Usage
 
@@ -108,6 +109,55 @@ jobs:
 ```
 
 **💡 Pro tip:** You only need to specify the registries you want to use. Registry 2 and 3 are optional and will be skipped if credentials aren't provided.
+## Build Cache Example
+GitHub-hosted runners give you a fresh VM on every job, so builds start cold unless you bring a cache with you. Pass `cache-from` and `cache-to` to reuse layers between runs.
+
+The quickest option is GitHub's own Actions cache:
+
+```yml
+      - name: Build and push Docker image
+        uses: serversideup/github-action-docker-build@v6
+        with:
+          tags: serversideup/financial-freedom:latest
+          registry-username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          registry-password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+```
+
+If you'd rather keep the cache next to your image, store it in your registry instead. This avoids the 10GB Actions cache limit and stays shared across branches:
+
+```yml
+name: Docker Publish (Registry Cache)
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  docker-publish:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build and push Docker image
+        uses: serversideup/github-action-docker-build@v6
+        with:
+          tags: ghcr.io/myorg/myapp:latest
+          registry: "ghcr.io"
+          registry-username: ${{ github.actor }}
+          registry-password: ${{ secrets.GITHUB_TOKEN }}
+          cache-from: type=registry,ref=ghcr.io/myorg/myapp/buildcache:latest
+          cache-to: type=registry,ref=ghcr.io/myorg/myapp/buildcache:latest,mode=max
+```
+
+**💡 Pro tip:** `mode=max` caches every layer, including intermediate build stages. Without it you only cache the layers that ship in your final image, which usually misses the expensive ones like `composer install`, `npm ci`, and compile steps.
+
 ### Configuration options
 **🔀 Input Name**|**📚 Description**|**🛑 Required**|**👉 Default**
 :-----:|:-----:|:-----:|:-----:
